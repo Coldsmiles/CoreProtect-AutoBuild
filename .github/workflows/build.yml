@@ -1,12 +1,12 @@
 name: Build and Deploy
 
-于:
+on:
   schedule:
     - cron: '0 5 * * 0'  # 仅周日凌晨5点触发
   push:
-    分支: [main]
+    branches: [main]
   pull_request:
-    分支: [main]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -78,4 +78,4 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: ${{ env.TAG_NAME }}
           prerelease: false
-          文件: ./external-coreprotect/target/*.jar
+          files: ./external-coreprotect/target/*.jar
