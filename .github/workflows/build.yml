@@ -1,12 +1,12 @@
 name: Build and Deploy
 
-on:
+于:
   schedule:
     - cron: '0 5 * * 0'  # 仅周日凌晨5点触发
   push:
-    branches: [main]
+    分支: [main]
   pull_request:
-    branches: [main]
+    分支: [main]
   workflow_dispatch:
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
         working-directory: ./external-coreprotect
         run: |
           # 修改版本号和分支参数
-          sed -i '5s|<version>[^<]*</version>|<version>23.4-dev</version>|' pom.xml
+          sed -i '5s|<version>[^<]*</version>|<version>24.0-dev</version>|' pom.xml
           sed -i '7s|<project.branch></project.branch>|<project.branch>development</project.branch>|' pom.xml
           cat pom.xml  # 验证修改
 
@@ -78,4 +78,4 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: ${{ env.TAG_NAME }}
           prerelease: false
-          files: ./external-coreprotect/target/*.jar
+          文件: ./external-coreprotect/target/*.jar
